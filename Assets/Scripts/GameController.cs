@@ -5,9 +5,11 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject gameOverPanel;
+    [SerializeField] private GameObject gameOverPanel, winPanel;
     private float gameOverThreshold = -50.0f;
     private bool gameOver = false;
+    private int currentLevel = 1, currentCheckpoint = 1;
+    [SerializeField] private Transform startingPoint;
 
     void Update()
     {
@@ -23,6 +25,13 @@ public class GameController : MonoBehaviour
         {
             GameOver();
         }
+    }
+
+    public void Win()
+    {
+        winPanel.SetActive(true);
+        Time.timeScale = 0.0f;
+        Debug.Log("Level Complete!");
     }
 
     void GameOver()
