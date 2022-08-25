@@ -7,6 +7,7 @@ public class EndingPoint : MonoBehaviour
 
     public GameObject gameControllerObject;
     private GameController gameController;
+    [SerializeField] private string levelToLoad;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +18,7 @@ public class EndingPoint : MonoBehaviour
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            gameController.Win();
+            gameController.Win(levelToLoad);
         }
     }
 }

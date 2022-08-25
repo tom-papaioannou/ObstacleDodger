@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -27,11 +28,11 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void Win()
+    public void Win(string levelToLoad)
     {
         winPanel.SetActive(true);
-        Time.timeScale = 0.0f;
         Debug.Log("Level Complete!");
+        SceneManager.LoadSceneAsync(levelToLoad);
     }
 
     void GameOver()

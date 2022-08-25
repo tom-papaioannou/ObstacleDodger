@@ -2042,6 +2042,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 778541526}
     m_Modifications:
     - target: {fileID: 910952352, guid: 7a06e743cd2f28842a728e4ae0b11fce, type: 3}
+      propertyPath: levelToLoad
+      value: Level02
+      objectReference: {fileID: 0}
+    - target: {fileID: 910952352, guid: 7a06e743cd2f28842a728e4ae0b11fce, type: 3}
       propertyPath: gameControllerObject
       value: 
       objectReference: {fileID: 440483461}
