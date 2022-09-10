@@ -35,10 +35,11 @@ public class GameController : MonoBehaviour
         SceneManager.LoadSceneAsync(levelToLoad);
     }
 
-    void GameOver()
+    public void GameOver()
     {
         gameOverPanel.SetActive(true);
         gameOver = true;
+        Time.timeScale = 0.0f;
         Debug.Log("Game Over!");
     }
 
