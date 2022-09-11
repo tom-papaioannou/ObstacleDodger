@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     private bool gameOver = false;
     private int currentLevel = 1, currentCheckpoint = 1;
     [SerializeField] private Transform startingPoint;
+    public string nextLevel = "";
 
     void Update()
     {
@@ -32,7 +33,15 @@ public class GameController : MonoBehaviour
     {
         winPanel.SetActive(true);
         Debug.Log("Level Complete!");
-        SceneManager.LoadSceneAsync(levelToLoad);
+        Time.timeScale = 0.0f;
+        //SceneManager.LoadSceneAsync(levelToLoad);
+        nextLevel = levelToLoad;
+    }
+
+    public void LoadNextLevel()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadSceneAsync(nextLevel);
     }
 
     public void GameOver()
