@@ -12,9 +12,11 @@ public class GameController : MonoBehaviour
     private bool gameOver = false;
     private int currentLevel = 1, currentCheckpoint = 1;
     [SerializeField] private Transform startingPoint;
-    public TextMeshProUGUI timeText;
 
     public static GameController Instance { get; private set; }
+
+    public UIController UIController { get; private set; }
+    public TimeController TimeController { get; private set; }
 
     private void Awake()
     {
@@ -22,12 +24,24 @@ public class GameController : MonoBehaviour
 
         if (Instance != null && Instance != this)
         {
-            Destroy(this.gameObject);
+            Destroy(gameObject);
             return;
         }
         
         Instance = this;
+        UIController = GetComponentInChildren<UIController>();
+        TimeController = GetComponentInChildren<TimeController>();
         DontDestroyOnLoad(gameObject);
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        TimeController.ResetTime();
     }
 
     void Update()
@@ -43,6 +57,11 @@ public class GameController : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+    }
+
+    public void UpdateTimeUI(string time)
+    {
+        UIController.UpdateTimeText(time);
     }
 
     void CheckIfGameOver()
@@ -77,6 +96,11 @@ public class GameController : MonoBehaviour
         gameOver = true;
         Time.timeScale = 0.0f;
         Debug.Log("Game Over!");
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
 }

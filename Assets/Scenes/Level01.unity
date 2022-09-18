@@ -1416,6 +1416,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2603418139501557843, guid: cef3f93512d9ba64790881ba0f70fea4, type: 3}
+      propertyPath: m_Name
+      value: UIController
+      objectReference: {fileID: 0}
     - target: {fileID: 2603418140678195731, guid: cef3f93512d9ba64790881ba0f70fea4, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -1478,6 +1482,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cef3f93512d9ba64790881ba0f70fea4, type: 3}
+--- !u!1 &2603418139773705961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2603418139501557843, guid: cef3f93512d9ba64790881ba0f70fea4, type: 3}
+  m_PrefabInstance: {fileID: 2603418139773705960}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2603418139773705962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603418139773705961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fc08779d63e0c7418e3d298d4601d89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeText: {fileID: 2111562758}
 --- !u!1 &3404536714529178965
 GameObject:
   m_ObjectHideFlags: 0
@@ -1692,68 +1714,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &8639223516929216723
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8639223517107017334, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: timeText
-      value: 
-      objectReference: {fileID: 2111562758}
-    - target: {fileID: 8639223517107017334, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: gameControllerObject
-      value: 
-      objectReference: {fileID: 440483461}
-    - target: {fileID: 8639223517107017335, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
-      propertyPath: m_Name
-      value: TimeController
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}

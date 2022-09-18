@@ -15,6 +15,11 @@ public class TimeController : MonoBehaviour
         {
             GameController.Instance.GameOver();
         }
-        GameController.Instance.timeText.text = ((int)timeLeft).ToString();
+        GameController.Instance.UpdateTimeUI(((int)timeLeft).ToString());
+    }
+
+    public void ResetTime()
+    {
+        timeLeft = 300.0f;
     }
 }
