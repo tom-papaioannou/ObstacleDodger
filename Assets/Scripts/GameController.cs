@@ -53,12 +53,12 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-#if !UNITY_EDITOR
-        if (Input.GetKeyUp(KeyCode.RightArrow) && !SceneManager.GetActiveScene().name.Equals("Level03"))
-        {
-            Win();
-        }
-#endif
+//#if !UNITY_EDITOR
+//        if (Input.GetKeyUp(KeyCode.RightArrow) && !SceneManager.GetActiveScene().name.Equals("Level03"))
+//        {
+//            Win();
+//        }
+//#endif
         if (levelWon)
         {
             if (Input.GetKeyUp(KeyCode.JoystickButton0))

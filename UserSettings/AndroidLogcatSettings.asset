@@ -13,6 +13,12 @@
             "name": "com.TomPapaioannou.ObstacleDodger",
             "processId": 6522,
             "exited": false
+        },
+        {
+            "deviceId": "M005019055",
+            "name": "com.vuzix.launcher.m400",
+            "processId": 1784,
+            "exited": false
         }
     ],
     "m_Tags": {

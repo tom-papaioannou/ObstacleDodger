@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 #else
         float x = Input.acceleration.x > moveThreshold ? Input.acceleration.x - moveThreshold : Input.acceleration.x < -moveThreshold ? Input.acceleration.x + moveThreshold : 0.0f;
         float z = Input.acceleration.z > moveThreshold ? Input.acceleration.z - moveThreshold : Input.acceleration.z < -moveThreshold ? Input.acceleration.z + moveThreshold : 0.0f;
-        rb.AddForce(new Vector3((x * speed * Time.deltaTime)/ rb.mass, 0.0f, (z * speed * Time.deltaTime)/rb.mass));
+        rb.AddForce(new Vector3((x * speed * Time.deltaTime)/ rb.mass, 0.0f, (-z * speed * Time.deltaTime)/rb.mass));
 #endif
     }
 }
