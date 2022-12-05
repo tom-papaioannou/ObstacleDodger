@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "M005019055",
+    "m_SelectedDeviceId": "M008000227",
     "m_SelectedPackage": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "M008000227",
+        "name": "com.TomPapaioannou.ObstacleDodger",
+        "processId": 15782,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -15,9 +15,39 @@
             "exited": false
         },
         {
-            "deviceId": "M005019055",
-            "name": "com.vuzix.launcher.m400",
-            "processId": 1784,
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 13476,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 13808,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 14186,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 15034,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 15400,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 15782,
             "exited": false
         }
     ],

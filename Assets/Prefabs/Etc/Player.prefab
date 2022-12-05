@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 500
+  moveThreshold: 0.2
 --- !u!54 &7578712632092174903
 Rigidbody:
   m_ObjectHideFlags: 0

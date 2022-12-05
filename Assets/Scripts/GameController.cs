@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour
 //#endif
         if (levelWon)
         {
-            if (Input.GetKeyUp(KeyCode.JoystickButton0))
+            if (Input.GetKeyUp(KeyCode.JoystickButton0) || ((Input.acceleration.z < -0.5f) && !SceneManager.GetActiveScene().name.Equals("Level03")) || ((Input.acceleration.z > 0.5f) && SceneManager.GetActiveScene().name.Equals("Level03")))
             {
                 LoadNextLevel();
             }
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                if (Input.GetKeyDown(KeyCode.R) || (Input.touchCount > 0) || Input.GetKeyUp(KeyCode.JoystickButton0))
+                if (Input.GetKeyDown(KeyCode.R) || (Input.touchCount > 0)  || (Input.acceleration.z < -0.5f) || Input.GetKeyUp(KeyCode.JoystickButton0))
                 {
                     Restart();
                 }
