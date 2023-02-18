@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOverPanel, winPanel;
-    private float gameOverThreshold = -50.0f;
+    [SerializeField] private float gameOverThreshold = -30.0f;
     private bool gameOver = false, restart = false, levelWon = false;
     private int currentLevel = 1, currentCheckpoint = 1;
     [SerializeField] private Transform startingPoint;

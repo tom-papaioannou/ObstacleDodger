@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] private float speed = 1.0f;
-    [SerializeField] private float moveThreshold = 0.2f;
+    [SerializeField] private float minMoveThreshold = 0.1f;
+    [SerializeField] private float maxMoveThreshold = 0.6f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +19,11 @@ public class Player : MonoBehaviour
     {
 #if UNITY_EDITOR
 
-        rb.AddForce(new Vector3((Input.GetAxis("Horizontal") * speed * Time.deltaTime) / rb.mass, 0.0f, (Input.GetAxis("Vertical") * speed * Time.deltaTime) / rb.mass));
+        rb.AddTorque(new Vector3((Input.GetAxis("Vertical") * speed * Time.deltaTime) / rb.mass, 0.0f, - (Input.GetAxis("Horizontal") * speed * Time.deltaTime) / rb.mass));
 #else
-        float x = Input.acceleration.x > moveThreshold ? Input.acceleration.x - moveThreshold : Input.acceleration.x < -moveThreshold ? Input.acceleration.x + moveThreshold : 0.0f;
-        float z = Input.acceleration.z > moveThreshold ? Input.acceleration.z - moveThreshold : Input.acceleration.z < -moveThreshold ? Input.acceleration.z + moveThreshold : 0.0f;
-        rb.AddForce(new Vector3((x * speed * Time.deltaTime)/ rb.mass, 0.0f, (-z * speed * Time.deltaTime)/rb.mass));
+        float x = Input.acceleration.x > minMoveThreshold ? (Input.acceleration.x > maxMoveThreshold ? maxMoveThreshold - minMoveThreshold : Input.acceleration.x - minMoveThreshold) : Input.acceleration.x < (-minMoveThreshold) ? (Input.acceleration.x < (- maxMoveThreshold) ? (- maxMoveThreshold) + minMoveThreshold : Input.acceleration.x + minMoveThreshold) : 0.0f;
+        float z = Input.acceleration.z > minMoveThreshold ? (Input.acceleration.z > maxMoveThreshold ? maxMoveThreshold - minMoveThreshold : Input.acceleration.z - minMoveThreshold) : Input.acceleration.z < (-minMoveThreshold) ? (Input.acceleration.z < (- maxMoveThreshold) ? (- maxMoveThreshold) + minMoveThreshold : Input.acceleration.z + minMoveThreshold) : 0.0f;
+        rb.AddTorque(new Vector3(- ((2 * z * speed * Time.deltaTime)/rb.mass), 0.0f, - ((2 * x * speed * Time.deltaTime)/rb.mass)));
 #endif
     }
 }
