@@ -1,0 +1,113 @@
+{
+    "m_SelectedDeviceId": "M008000227",
+    "m_SelectedPackage": {
+        "deviceId": "M008000227",
+        "name": "com.TomPapaioannou.ObstacleDodger",
+        "processId": 5007,
+        "exited": false
+    },
+    "m_SelectedPriority": 0,
+    "m_KnownPackagesForSerialization": [
+        {
+            "deviceId": "caswjbzlgawcizfq",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 6522,
+            "exited": false
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.vuzix.launcher.hud",
+            "processId": 1343,
+            "exited": false
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 3846,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 4039,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 4214,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 4428,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 4632,
+            "exited": true
+        },
+        {
+            "deviceId": "M008000227",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 5007,
+            "exited": false
+        }
+    ],
+    "m_Tags": {
+        "m_Entries": [
+            {
+                "m_Name": "Filter by all listed tags",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "No Filter",
+                "m_Selected": true
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Tag Control...",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "Unity",
+                "m_Selected": false
+            },
+            {
+                "m_Name": "CRASH",
+                "m_Selected": false
+            }
+        ]
+    },
+    "m_MemoryViewerState": {
+        "MemoryWindowHeight": 300.0,
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
+        "MemoryGroup": 2,
+        "Behavior": 0
+    },
+    "m_Filter": "",
+    "m_FilterIsRegularExpression": false,
+    "m_SymbolPaths": []
+}
