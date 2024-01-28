@@ -1,25 +1,50 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-    public float timeLeft = 300.0f;
 
-    // Update is called once per frame
-    void Update()
+    public static Action OnTimeOut;
+    public static Action<int> OnTimeUpdate;
+
+    private int timeLeft = 5;
+    private bool _gameOver = false;
+    private Coroutine timeCoroutine;
+
+    private void OnEnable()
     {
-        timeLeft -= Time.deltaTime;
-        if (((int)timeLeft) <= 0)
-        {
-            GameController.Instance.GameOver();
-        }
-        GameController.Instance.UpdateTimeUI(((int)timeLeft).ToString());
+        GameController.OnLevelLoaded += ResetTime;
     }
 
-    public void ResetTime()
+    private IEnumerator AdvanceTime()
     {
-        timeLeft = 300.0f;
+        while (!_gameOver)
+        {
+            yield return new WaitForSeconds(1.0f);
+            timeLeft--;
+            OnTimeUpdate?.Invoke(timeLeft);
+            if (timeLeft <= 0)
+            {
+                _gameOver = true;
+                OnTimeOut?.Invoke();
+            }
+        }
+    }
+
+    private void ResetTime()
+    {
+        timeLeft = 300;
+        OnTimeUpdate?.Invoke(timeLeft);
+        _gameOver = false;
+        if (timeCoroutine != null)
+            StopCoroutine(timeCoroutine);
+
+        timeCoroutine = StartCoroutine(AdvanceTime());
+    }
+    private void OnDisable()
+    {
+        GameController.OnLevelLoaded -= ResetTime;
     }
 }
+

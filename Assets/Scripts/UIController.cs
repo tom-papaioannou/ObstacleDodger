@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,8 +5,18 @@ public class UIController : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
 
-    public void UpdateTimeText(string time)
+    private void OnEnable()
     {
-        timeText.text = time;
+        TimeController.OnTimeUpdate += UpdateTimeText;
+    }
+
+    private void UpdateTimeText(int time)
+    {
+        timeText.text = time.ToString();
+    }
+
+    private void OnDisable()
+    {
+        TimeController.OnTimeUpdate -= UpdateTimeText;
     }
 }

@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+
+    public static Action OnLevelLoaded;
+
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOverPanel, winPanel;
     [SerializeField] private float gameOverThreshold = -30.0f;
@@ -37,11 +38,12 @@ public class GameController : MonoBehaviour
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        TimeController.OnTimeOut += GameOver;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        TimeController.ResetTime();
+        OnLevelLoaded?.Invoke();
         if (SceneManager.GetActiveScene().name.Equals("Level03"))
         {
             Time.timeScale = 0.0f;
@@ -93,18 +95,13 @@ public class GameController : MonoBehaviour
 
     private void Restart()
     {
-            player = null;
-            winPanel.SetActive(false);
-            gameOverPanel.SetActive(false);
-            currentLevel = 1;
-            gameOver = false;
-            SceneManager.LoadSceneAsync("Level01");
-            restart = true;
-    }
-
-    public void UpdateTimeUI(string time)
-    {
-        UIController.UpdateTimeText(time);
+        player = null;
+        winPanel.SetActive(false);
+        gameOverPanel.SetActive(false);
+        currentLevel = 1;
+        gameOver = false;
+        SceneManager.LoadSceneAsync("Level01");
+        restart = true;
     }
 
     void CheckIfGameOver()
@@ -121,7 +118,6 @@ public class GameController : MonoBehaviour
         winPanel.SetActive(true);
         Debug.Log("Level Complete!");
         Time.timeScale = 0.0f;
-        //SceneManager.LoadSceneAsync(levelToLoad);
         currentLevel++;
         if (currentLevel > 3)
             currentLevel = 1;
@@ -146,6 +142,7 @@ public class GameController : MonoBehaviour
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        TimeController.OnTimeOut -= GameOver;
     }
 
 }
