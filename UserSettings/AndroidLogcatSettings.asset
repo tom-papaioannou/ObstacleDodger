@@ -1,9 +1,9 @@
 {
-    "m_SelectedDeviceId": "M008000227",
+    "m_SelectedDeviceId": "9253c46c",
     "m_SelectedPackage": {
-        "deviceId": "M008000227",
-        "name": "com.TomPapaioannou.ObstacleDodger",
-        "processId": 5007,
+        "deviceId": "9253c46c",
+        "name": "com.DefaultCompany.UltimateCircular",
+        "processId": 8911,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -54,6 +54,48 @@
             "deviceId": "M008000227",
             "name": "com.TomPapaioannou.ObstacleDodger",
             "processId": 5007,
+            "exited": false
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.miui.home",
+            "processId": 2443,
+            "exited": false
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.DefaultCompany.UltimateCircular",
+            "processId": 15742,
+            "exited": true
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.DefaultCompany.UltimateCircular",
+            "processId": 20311,
+            "exited": true
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.DefaultCompany.UltimateCircular",
+            "processId": 23688,
+            "exited": true
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.DefaultCompany.UltimateCircular",
+            "processId": 6332,
+            "exited": true
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.DefaultCompany.UltimateCircular",
+            "processId": 7525,
+            "exited": true
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.DefaultCompany.UltimateCircular",
+            "processId": 8911,
             "exited": false
         }
     ],
