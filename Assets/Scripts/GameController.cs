@@ -7,17 +7,12 @@ public class GameController : MonoBehaviour
 
     public static Action OnLevelLoaded;
 
-    [SerializeField] private GameObject player;
     [SerializeField] private GameObject gameOverPanel, winPanel;
-    [SerializeField] private float gameOverThreshold = -30.0f;
-    private bool gameOver = false, restart = false, levelWon = false;
+    private bool gameOver = false, levelWon = false;
     private int currentLevel = 1, currentCheckpoint = 1;
     [SerializeField] private Transform startingPoint;
 
     public static GameController Instance { get; private set; }
-
-    public UIController UIController { get; private set; }
-    public TimeController TimeController { get; private set; }
 
     private void Awake()
     {
@@ -28,10 +23,8 @@ public class GameController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         Instance = this;
-        UIController = GetComponentInChildren<UIController>();
-        TimeController = GetComponentInChildren<TimeController>();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -39,6 +32,13 @@ public class GameController : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         TimeController.OnTimeOut += GameOver;
+        PlayerController.OnPlayerFall += GameOver;
+        PlayerController.OnPlayerSpawn += UnpauseGamePlay;
+    }
+
+    void UnpauseGamePlay()
+    {
+        Time.timeScale = 1.0f;
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -55,61 +55,25 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-//#if !UNITY_EDITOR
-//        if (Input.GetKeyUp(KeyCode.RightArrow) && !SceneManager.GetActiveScene().name.Equals("Level03"))
-//        {
-//            Win();
-//        }
-//#endif
         if (levelWon)
         {
             if (Input.GetKeyUp(KeyCode.JoystickButton0) || ((Input.acceleration.z < -0.5f) && !SceneManager.GetActiveScene().name.Equals("Level03")) || ((Input.acceleration.z > 0.5f) && SceneManager.GetActiveScene().name.Equals("Level03")))
-            {
                 LoadNextLevel();
-            }
         }
-        if (restart)
+        else if (gameOver)
         {
-            Time.timeScale = 1.0f;
-            restart = false;
-        }
-        else if (player != null)
-        {
-            if (!gameOver)
-            {
-                CheckIfGameOver();
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.R) || (Input.touchCount > 0)  || (Input.acceleration.z < -0.5f) || Input.GetKeyUp(KeyCode.JoystickButton0))
-                {
-                    Restart();
-                }
-            }
-        }
-        else
-        {
-            player = GameObject.FindGameObjectWithTag("Player");
+            if (Input.GetKeyDown(KeyCode.R) || (Input.touchCount > 0) || (Input.acceleration.z < -0.5f) || Input.GetKeyUp(KeyCode.JoystickButton0))
+                Restart();
         }
     }
 
     private void Restart()
     {
-        player = null;
         winPanel.SetActive(false);
         gameOverPanel.SetActive(false);
         currentLevel = 1;
         gameOver = false;
         SceneManager.LoadSceneAsync("Level01");
-        restart = true;
-    }
-
-    void CheckIfGameOver()
-    {
-        if (player.transform.position.y < gameOverThreshold)
-        {
-            GameOver();
-        }
     }
 
     public void Win()
@@ -126,7 +90,6 @@ public class GameController : MonoBehaviour
     public void LoadNextLevel()
     {
         levelWon = false;
-        Time.timeScale = 1.0f;
         winPanel.SetActive(false);
         SceneManager.LoadSceneAsync("Level0" + currentLevel.ToString());
     }
@@ -143,6 +106,7 @@ public class GameController : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
         TimeController.OnTimeOut -= GameOver;
+        PlayerController.OnPlayerFall -= GameOver;
+        PlayerController.OnPlayerSpawn -= UnpauseGamePlay;
     }
-
 }
