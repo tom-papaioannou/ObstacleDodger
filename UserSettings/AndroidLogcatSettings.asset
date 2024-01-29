@@ -1,101 +1,17 @@
 {
     "m_SelectedDeviceId": "9253c46c",
-    "m_SelectedPackage": {
+    "m_SelectedProcess": {
         "deviceId": "9253c46c",
-        "name": "com.DefaultCompany.UltimateCircular",
-        "processId": 8911,
+        "name": "com.TomPapaioannou.ObstacleDodger",
+        "processId": 16131,
         "exited": false
     },
     "m_SelectedPriority": 0,
-    "m_KnownPackagesForSerialization": [
-        {
-            "deviceId": "caswjbzlgawcizfq",
-            "name": "com.TomPapaioannou.ObstacleDodger",
-            "processId": 6522,
-            "exited": false
-        },
-        {
-            "deviceId": "M008000227",
-            "name": "com.vuzix.launcher.hud",
-            "processId": 1343,
-            "exited": false
-        },
-        {
-            "deviceId": "M008000227",
-            "name": "com.TomPapaioannou.ObstacleDodger",
-            "processId": 3846,
-            "exited": true
-        },
-        {
-            "deviceId": "M008000227",
-            "name": "com.TomPapaioannou.ObstacleDodger",
-            "processId": 4039,
-            "exited": true
-        },
-        {
-            "deviceId": "M008000227",
-            "name": "com.TomPapaioannou.ObstacleDodger",
-            "processId": 4214,
-            "exited": true
-        },
-        {
-            "deviceId": "M008000227",
-            "name": "com.TomPapaioannou.ObstacleDodger",
-            "processId": 4428,
-            "exited": true
-        },
-        {
-            "deviceId": "M008000227",
-            "name": "com.TomPapaioannou.ObstacleDodger",
-            "processId": 4632,
-            "exited": true
-        },
-        {
-            "deviceId": "M008000227",
-            "name": "com.TomPapaioannou.ObstacleDodger",
-            "processId": 5007,
-            "exited": false
-        },
+    "m_KnownProcessesForSerialization": [
         {
             "deviceId": "9253c46c",
-            "name": "com.miui.home",
-            "processId": 2443,
-            "exited": false
-        },
-        {
-            "deviceId": "9253c46c",
-            "name": "com.DefaultCompany.UltimateCircular",
-            "processId": 15742,
-            "exited": true
-        },
-        {
-            "deviceId": "9253c46c",
-            "name": "com.DefaultCompany.UltimateCircular",
-            "processId": 20311,
-            "exited": true
-        },
-        {
-            "deviceId": "9253c46c",
-            "name": "com.DefaultCompany.UltimateCircular",
-            "processId": 23688,
-            "exited": true
-        },
-        {
-            "deviceId": "9253c46c",
-            "name": "com.DefaultCompany.UltimateCircular",
-            "processId": 6332,
-            "exited": true
-        },
-        {
-            "deviceId": "9253c46c",
-            "name": "com.DefaultCompany.UltimateCircular",
-            "processId": 7525,
-            "exited": true
-        },
-        {
-            "deviceId": "9253c46c",
-            "name": "com.DefaultCompany.UltimateCircular",
-            "processId": 8911,
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 16131,
             "exited": false
         }
     ],
@@ -131,8 +47,11 @@
             }
         ]
     },
+    "m_ExtraWindowState": {
+        "Type": 0,
+        "Height": 0.0
+    },
     "m_MemoryViewerState": {
-        "MemoryWindowHeight": 300.0,
         "MemoryWindowWidth": 170.0,
         "MemoryTypeEnabled": [
             true,
@@ -147,9 +66,35 @@
             true
         ],
         "MemoryGroup": 2,
-        "Behavior": 0
+        "AutoCapture": true
     },
-    "m_Filter": "",
-    "m_FilterIsRegularExpression": false,
-    "m_SymbolPaths": []
+    "m_FilterOptions": {
+        "m_Filter": "",
+        "m_UseRegularExpressions": false,
+        "m_MatchCase": false
+    },
+    "m_SymbolPaths": [],
+    "m_CaptureVideoSettings": {
+        "TimeLimitEnabled": false,
+        "TimeLimit": 180,
+        "VideoSizeEnabled": false,
+        "VideoSizeX": 1280,
+        "VideoSizeY": 720,
+        "BitRateEnabled": false,
+        "BitRateK": 20000,
+        "DisplayIdEnabled": false,
+        "DisplayId": ""
+    },
+    "m_InputSettings": {
+        "ShiftModifier": false,
+        "SendText": "",
+        "PosixKillSignal": 0,
+        "TargetProcess": {
+            "deviceId": "",
+            "name": "",
+            "processId": 0,
+            "exited": false
+        }
+    },
+    "m_AutoScroll": 0
 }
