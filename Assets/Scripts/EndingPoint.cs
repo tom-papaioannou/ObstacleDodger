@@ -1,14 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EndingPoint : MonoBehaviour
 {
+    public static Action OnPlayerWon;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
-            GameController.Instance.Win();
+            OnPlayerWon?.Invoke();
         }
     }
 }

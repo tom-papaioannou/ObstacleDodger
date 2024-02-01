@@ -24,14 +24,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2603418140678195731}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5104362410573572918}
   - {fileID: 2603418139501557847}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2603418140678195732
 MonoBehaviour:
@@ -45,16 +46,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1760a9c1641bebc45846bd39fc86d447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   gameOverPanel: {fileID: 2603418140840517741}
   winPanel: {fileID: 2603418140868458486}
-  startingPoint: {fileID: 0}
-  timeText: {fileID: 0}
+  player: {fileID: 7578712632092174902, guid: a476f2bebe826964499617721da054a2, type: 3}
 --- !u!1001 &2814952448205201189
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2603418140678195733}
     m_Modifications:
     - target: {fileID: 230118262827870066, guid: 15d1b447835604a4c9c87392d5ec77c9, type: 3}
@@ -174,6 +174,9 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15d1b447835604a4c9c87392d5ec77c9, type: 3}
 --- !u!224 &2603418139501557847 stripped
 RectTransform:
@@ -195,6 +198,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2603418140678195733}
     m_Modifications:
     - target: {fileID: 8639223517107017333, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
@@ -246,6 +250,9 @@ PrefabInstance:
       value: TimeController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8dc0cddb6b512c47b31e9eae722e5bc, type: 3}
 --- !u!4 &5104362410573572918 stripped
 Transform:

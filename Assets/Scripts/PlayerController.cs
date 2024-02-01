@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public static Action OnPlayerFall, OnPlayerSpawn;
+    public static Action OnPlayerFall;
 
     Rigidbody rb;
     [SerializeField] private float speed = 1.0f;
@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        OnPlayerSpawn?.Invoke();
     }
 
     void FixedUpdate()
