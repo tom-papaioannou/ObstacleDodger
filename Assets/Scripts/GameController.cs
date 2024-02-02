@@ -9,10 +9,10 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel, winPanel, player;
     private CinemachineVirtualCamera virtualCamera;
-    private bool gameOver = false, levelWon = false;
     private int currentLevel = 1;
     private Vector3? persistentSpawnPosition = null;
     private Quaternion? persistentSpawnRotation = null;
+    private GameState gameState = GameState.Idle;
 
     public static GameController Instance { get; private set; }
 
@@ -71,11 +71,12 @@ public class GameController : MonoBehaviour
         if (SceneManager.GetActiveScene().name.Equals("Level03"))
         {
             PauseGamePlay();
-            levelWon = true;
+            gameState = GameState.Won;
             currentLevel = 1;
         }
         else
         {
+            gameState = GameState.Idle;
             UnpauseGamePlay();
             virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
             SpawnPlayer();
@@ -84,23 +85,32 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (levelWon && (Input.GetKeyUp(KeyCode.JoystickButton0) || ((Input.acceleration.z < -0.5f) && !SceneManager.GetActiveScene().name.Equals("Level03")) || ((Input.acceleration.z > 0.5f) && SceneManager.GetActiveScene().name.Equals("Level03"))))
-            LoadNextLevel();
-        else if (gameOver && (Input.GetKeyDown(KeyCode.R) || (Input.touchCount > 0) || (Input.acceleration.z < -0.5f) || Input.GetKeyUp(KeyCode.JoystickButton0)))
-            Restart();
+        switch (gameState)
+        {
+            case GameState.Won:
+                if(Input.GetKeyUp(KeyCode.JoystickButton0) || ((Input.acceleration.z < -0.5f) && !SceneManager.GetActiveScene().name.Equals("Level03")) || ((Input.acceleration.z > 0.5f) && SceneManager.GetActiveScene().name.Equals("Level03")))
+                    LoadNextLevel();
+                break;
+            case GameState.Lost:
+                if (Input.GetKeyDown(KeyCode.R) || (Input.touchCount > 0) || (Input.acceleration.z < -0.5f) || Input.GetKeyUp(KeyCode.JoystickButton0))
+                    Restart();
+                break;
+            default:
+                break;
+        }
     }
 
     private void Restart()
     {
         winPanel.SetActive(false);
         gameOverPanel.SetActive(false);
-        gameOver = false;
+        gameState = GameState.Idle;
         SceneManager.LoadSceneAsync("Level0" + currentLevel.ToString());
     }
 
     public void Win()
     {
-        levelWon = true;
+        gameState = GameState.Won;
         winPanel.SetActive(true);
         Debug.Log("Level Complete!");
         Time.timeScale = 0.0f;
@@ -111,7 +121,7 @@ public class GameController : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        levelWon = false;
+        gameState = GameState.Idle;
         winPanel.SetActive(false);
         ChangeSpawnPoint(null);
         SceneManager.LoadSceneAsync("Level0" + currentLevel.ToString());
@@ -120,7 +130,7 @@ public class GameController : MonoBehaviour
     public void GameOver()
     {
         gameOverPanel.SetActive(true);
-        gameOver = true;
+        gameState = GameState.Lost;
         Time.timeScale = 0.0f;
         Debug.Log("Game Over!");
     }
