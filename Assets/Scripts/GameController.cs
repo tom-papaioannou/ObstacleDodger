@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public static Action OnLevelLoaded;
+    public static Action OnLevelLoaded, OnGameOver, OnLevelWin;
 
-    [SerializeField] private GameObject gameOverPanel, winPanel, player;
+    [SerializeField] private GameObject player;
     private CinemachineVirtualCamera virtualCamera;
     private int currentLevel = 1;
     private Vector3? persistentSpawnPosition = null;
@@ -102,8 +102,6 @@ public class GameController : MonoBehaviour
 
     private void Restart()
     {
-        winPanel.SetActive(false);
-        gameOverPanel.SetActive(false);
         gameState = GameState.Idle;
         SceneManager.LoadSceneAsync("Level0" + currentLevel.ToString());
     }
@@ -111,7 +109,7 @@ public class GameController : MonoBehaviour
     public void Win()
     {
         gameState = GameState.Won;
-        winPanel.SetActive(true);
+        OnLevelWin?.Invoke();
         Debug.Log("Level Complete!");
         Time.timeScale = 0.0f;
         currentLevel++;
@@ -122,14 +120,13 @@ public class GameController : MonoBehaviour
     public void LoadNextLevel()
     {
         gameState = GameState.Idle;
-        winPanel.SetActive(false);
         ChangeSpawnPoint(null);
         SceneManager.LoadSceneAsync("Level0" + currentLevel.ToString());
     }
 
     public void GameOver()
     {
-        gameOverPanel.SetActive(true);
+        OnGameOver?.Invoke();
         gameState = GameState.Lost;
         Time.timeScale = 0.0f;
         Debug.Log("Game Over!");
