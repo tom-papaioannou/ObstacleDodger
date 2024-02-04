@@ -8,23 +8,27 @@ public class TimeController : MonoBehaviour
     public static Action OnTimeOut;
     public static Action<int> OnTimeUpdate;
 
-    private int timeLeft = 5;
+    private int _timeLeft = 5;
+    private float _timeFactor = 1.0f;
     private bool _gameOver = false;
-    private Coroutine timeCoroutine;
+    private Coroutine _timeCoroutine;
 
     private void OnEnable()
     {
         GameController.OnLevelLoaded += ResetTime;
     }
 
+    // Coroutine that decreases time each second.
+    // Smaller _timeFactor means the countdown goes faster.
+    // Larger _timeFactor slows down the countdown.
     private IEnumerator AdvanceTime()
     {
         while (!_gameOver)
         {
-            yield return new WaitForSeconds(1.0f);
-            timeLeft--;
-            OnTimeUpdate?.Invoke(timeLeft);
-            if (timeLeft <= 0)
+            yield return new WaitForSeconds(_timeFactor);
+            _timeLeft--;
+            OnTimeUpdate?.Invoke(_timeLeft);
+            if (_timeLeft <= 0)
             {
                 _gameOver = true;
                 OnTimeOut?.Invoke();
@@ -34,13 +38,13 @@ public class TimeController : MonoBehaviour
 
     private void ResetTime()
     {
-        timeLeft = 300;
-        OnTimeUpdate?.Invoke(timeLeft);
+        _timeLeft = 300;
+        OnTimeUpdate?.Invoke(_timeLeft);
         _gameOver = false;
-        if (timeCoroutine != null)
-            StopCoroutine(timeCoroutine);
+        if (_timeCoroutine != null)
+            StopCoroutine(_timeCoroutine);
 
-        timeCoroutine = StartCoroutine(AdvanceTime());
+        _timeCoroutine = StartCoroutine(AdvanceTime());
     }
     private void OnDisable()
     {

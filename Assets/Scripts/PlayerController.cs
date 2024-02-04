@@ -6,12 +6,12 @@ public class PlayerController : MonoBehaviour
 
     public static Action OnPlayerFall;
 
-    Rigidbody rb;
+    private Rigidbody rb;
     [SerializeField] private float speed = 1.0f;
     [SerializeField] private float minMoveThreshold = 0.1f;
     [SerializeField] private float maxMoveThreshold = 0.6f;
     [SerializeField] private float fellDownThreshold = -30.0f;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -22,8 +22,8 @@ public class PlayerController : MonoBehaviour
         if (CheckIfPlayerFell())
             Destroy(this);
 
+    // On editor the game uses the arrow buttons, but on the Android devices it uses the accelerometer to move the ball
 #if UNITY_EDITOR
-
         rb.AddTorque(new Vector3((Input.GetAxis("Vertical") * speed * Time.deltaTime) / rb.mass, 0.0f, -(Input.GetAxis("Horizontal") * speed * Time.deltaTime) / rb.mass));
 #else
         float x = Input.acceleration.x > minMoveThreshold ? (Input.acceleration.x > maxMoveThreshold ? maxMoveThreshold - minMoveThreshold : Input.acceleration.x - minMoveThreshold) : Input.acceleration.x < (-minMoveThreshold) ? (Input.acceleration.x < (- maxMoveThreshold) ? (- maxMoveThreshold) + minMoveThreshold : Input.acceleration.x + minMoveThreshold) : 0.0f;
@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     bool CheckIfPlayerFell()
     {
+        // Triggers a Game Over Event for the GameController to handle
         if (transform.position.y < fellDownThreshold)
         {
             OnPlayerFall?.Invoke();

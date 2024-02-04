@@ -18,6 +18,7 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        // Transform GameController into a Singleton
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
 
     void OnEnable()
     {
+        // The various controllers communicate with Events
         SceneManager.sceneLoaded += OnSceneLoaded;
         TimeController.OnTimeOut += GameOver;
         PlayerController.OnPlayerFall += GameOver;
@@ -39,18 +41,17 @@ public class GameController : MonoBehaviour
 
     void SpawnPlayer()
     {
-        if (persistentSpawnPosition == null)
-        {
-            Debug.Log("There is not spawnpoint.");
+        if (persistentSpawnPosition == null)        
             ChangeSpawnPoint(GameObject.FindGameObjectWithTag("Start").transform);
-        }
-        
         
         virtualCamera.Follow = Instantiate(player, persistentSpawnPosition ?? new Vector3(), persistentSpawnRotation ?? new Quaternion()).transform;
     }
 
     void ChangeSpawnPoint(Transform transform)
     {
+        // Could not store directly a Transform of a spawn point because it gets destroyed each time a level is loaded.
+        // So I am storing positions and rotations and turn them to null each time a new Level is loaded.
+        // If they are null, the spawn point will get position and rotation from the starting point of the Level.
         persistentSpawnPosition = (transform != null) ? transform.position : null;
         persistentSpawnRotation = (transform != null) ? transform.rotation : null;
     }
@@ -68,12 +69,14 @@ public class GameController : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         OnLevelLoaded?.Invoke();
+        // Show a win screen on Level 03
         if (SceneManager.GetActiveScene().name.Equals("Level03"))
         {
             PauseGamePlay();
             gameState = GameState.Won;
             currentLevel = 1;
         }
+        // Reset gameplay for next level.
         else
         {
             gameState = GameState.Idle;
@@ -85,6 +88,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        // Checks only for Win and Lose conditions, more states could be added
         switch (gameState)
         {
             case GameState.Won:
@@ -111,7 +115,7 @@ public class GameController : MonoBehaviour
         gameState = GameState.Won;
         OnLevelWin?.Invoke();
         Debug.Log("Level Complete!");
-        Time.timeScale = 0.0f;
+        PauseGamePlay();
         currentLevel++;
         if (currentLevel > 3)
             currentLevel = 1;
@@ -128,7 +132,7 @@ public class GameController : MonoBehaviour
     {
         OnGameOver?.Invoke();
         gameState = GameState.Lost;
-        Time.timeScale = 0.0f;
+        PauseGamePlay();
         Debug.Log("Game Over!");
     }
 
