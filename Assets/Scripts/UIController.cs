@@ -1,8 +1,10 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
+    public static Action OnLoadNextLevelClicked;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private GameObject gameOverPanel, winPanel;
 
@@ -12,6 +14,11 @@ public class UIController : MonoBehaviour
         GameController.OnLevelLoaded += HidePanels;
         GameController.OnLevelWin += ShowWinPanel;
         GameController.OnGameOver += ShowGameOverPanel;
+    }
+
+    public void LoadNextLevelClicked()
+    {
+        OnLoadNextLevelClicked?.Invoke();
     }
 
     private void HidePanels()

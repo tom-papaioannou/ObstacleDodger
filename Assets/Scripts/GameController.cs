@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject player;
     private CinemachineVirtualCamera virtualCamera;
-    private int currentLevel = 1;
+    [SerializeField] private int currentLevel = 1;
     private Vector3? persistentSpawnPosition = null;
     private Quaternion? persistentSpawnRotation = null;
     private GameState gameState = GameState.Idle;
@@ -37,6 +37,7 @@ public class GameController : MonoBehaviour
         PlayerController.OnPlayerFall += GameOver;
         EndingPoint.OnPlayerWon += Win;
         CheckPoint.OnPlayerCheckpoint += ChangeSpawnPoint;
+        UIController.OnLoadNextLevelClicked += LoadNextLevel;
     }
 
     void SpawnPlayer()
@@ -143,5 +144,6 @@ public class GameController : MonoBehaviour
         PlayerController.OnPlayerFall -= GameOver;
         EndingPoint.OnPlayerWon -= Win;
         CheckPoint.OnPlayerCheckpoint -= ChangeSpawnPoint;
+        UIController.OnLoadNextLevelClicked -= LoadNextLevel;
     }
 }
