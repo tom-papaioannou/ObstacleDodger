@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "9253c46c",
         "name": "com.TomPapaioannou.ObstacleDodger",
-        "processId": 16131,
+        "processId": 500,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -12,6 +12,12 @@
             "deviceId": "9253c46c",
             "name": "com.TomPapaioannou.ObstacleDodger",
             "processId": 16131,
+            "exited": false
+        },
+        {
+            "deviceId": "9253c46c",
+            "name": "com.TomPapaioannou.ObstacleDodger",
+            "processId": 500,
             "exited": false
         }
     ],

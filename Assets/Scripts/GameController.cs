@@ -1,17 +1,19 @@
 using Cinemachine;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    public static Action OnLevelLoaded, OnGameOver, OnLevelWin;
+    public static Action OnLevelLoaded, OnRespawnPlayer, OnGameOver, OnLevelWin;
 
-    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject playerPrefab;
+    private GameObject player;
     private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private int currentLevel = 1;
-    private Vector3? persistentSpawnPosition = null;
-    private Quaternion? persistentSpawnRotation = null;
+    private int currentCheckpoint = 0;
+    [SerializeField] Transform[] spawnPoints;
     private GameState gameState = GameState.Idle;
 
     public static GameController Instance { get; private set; }
@@ -42,19 +44,14 @@ public class GameController : MonoBehaviour
 
     void SpawnPlayer()
     {
-        if (persistentSpawnPosition == null)        
-            ChangeSpawnPoint(GameObject.FindGameObjectWithTag("Start").transform);
-        
-        virtualCamera.Follow = Instantiate(player, persistentSpawnPosition ?? new Vector3(), persistentSpawnRotation ?? new Quaternion()).transform;
+        virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
+        player = Instantiate(playerPrefab, spawnPoints[currentCheckpoint].position, spawnPoints[currentCheckpoint].rotation);
+        virtualCamera.Follow = player.transform;
     }
 
-    void ChangeSpawnPoint(Transform transform)
+    void ChangeSpawnPoint(int checkpoint)
     {
-        // Could not store directly a Transform of a spawn point because it gets destroyed each time a level is loaded.
-        // So I am storing positions and rotations and turn them to null each time a new Level is loaded.
-        // If they are null, the spawn point will get position and rotation from the starting point of the Level.
-        persistentSpawnPosition = (transform != null) ? transform.position : null;
-        persistentSpawnRotation = (transform != null) ? transform.rotation : null;
+        currentCheckpoint = checkpoint;
     }
 
     void UnpauseGamePlay()
@@ -82,7 +79,6 @@ public class GameController : MonoBehaviour
         {
             gameState = GameState.Idle;
             UnpauseGamePlay();
-            virtualCamera = GameObject.FindGameObjectWithTag("VirtualCamera").GetComponent<CinemachineVirtualCamera>();
             SpawnPlayer();
         }
     }
@@ -105,10 +101,18 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void DestroyPlayer()
+    {
+        Destroy(player);
+    }
+
     private void Restart()
     {
         gameState = GameState.Idle;
-        SceneManager.LoadSceneAsync("Level0" + currentLevel.ToString());
+        OnRespawnPlayer?.Invoke();
+        DestroyPlayer();
+        UnpauseGamePlay();
+        SpawnPlayer();
     }
 
     public void Win()
@@ -125,8 +129,8 @@ public class GameController : MonoBehaviour
     public void LoadNextLevel()
     {
         gameState = GameState.Idle;
-        ChangeSpawnPoint(null);
         SceneManager.LoadSceneAsync("Level0" + currentLevel.ToString());
+        Destroy(gameObject);
     }
 
     public void GameOver()

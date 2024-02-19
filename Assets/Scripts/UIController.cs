@@ -12,6 +12,7 @@ public class UIController : MonoBehaviour
     {
         TimeController.OnTimeUpdate += UpdateTimeText;
         GameController.OnLevelLoaded += HidePanels;
+        GameController.OnRespawnPlayer += HidePanels;
         GameController.OnLevelWin += ShowWinPanel;
         GameController.OnGameOver += ShowGameOverPanel;
     }
@@ -46,6 +47,7 @@ public class UIController : MonoBehaviour
     {
         TimeController.OnTimeUpdate -= UpdateTimeText;
         GameController.OnLevelLoaded -= HidePanels;
+        GameController.OnRespawnPlayer -= HidePanels;
         GameController.OnLevelWin -= ShowWinPanel;
         GameController.OnGameOver -= ShowGameOverPanel;
     }
